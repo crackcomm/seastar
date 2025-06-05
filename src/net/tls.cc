@@ -1842,16 +1842,13 @@ public:
     }
 
     future<sstring> get_selected_alpn_protocol() {
-        return state_checked_access([this] {
+        return state_checked_access([this]() -> sstring {
             gnutls_datum_t selected_proto_datum = { nullptr, 0 };
             gtls_chk(gnutls_alpn_get_selected_protocol(*this, &selected_proto_datum));
-
             if (selected_proto_datum.data && selected_proto_datum.size > 0) {
-                sstring selected_protocol(reinterpret_cast<const char*>(selected_proto_datum.data), selected_proto_datum.size);
-                gnutls_free(selected_proto_datum.data);
-                return selected_protocol;
+                return {reinterpret_cast<const char*>(selected_proto_datum.data), selected_proto_datum.size};
             }
-            return sstring{};
+            return {};
         });
     }
 
