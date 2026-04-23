@@ -1903,7 +1903,7 @@ struct futurize : public internal::futurize_base<T> {
         return type(ready_future_marker(), std::move(value));
     }
     /// Convert the tuple representation into a future
-    static type from_tuple(const value_type& value) {
+    static type from_tuple(const value_type& value) requires (!std::is_reference_v<value_type>) {
         return type(ready_future_marker(), value);
     }
 private:

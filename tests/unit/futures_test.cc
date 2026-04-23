@@ -2681,6 +2681,15 @@ void compile_tests() {
     auto lvalue_type_handler = [](const std::runtime_error& e){};
     f = std::move(f).handle_exception_type(lvalue_type_handler);
 
+    // it is possible to create a future with lvalue reference result
+    int num = 5;
+    auto lfut_ready = make_ready_future<int&>(num);
+
+    // it should also be possible to return an lvalue reference from a continuation
+    future<int&> lfut_cont = std::move(lfut_ready).then([&] (int& x) -> int& {
+      return num;
+    });
+
     // static asserts for function_traits
 
     // Test plain function pointer
