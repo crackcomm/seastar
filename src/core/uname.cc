@@ -22,12 +22,11 @@
 
 
 #include <algorithm>
-#include <memory>
 #include <optional>
 #include <ranges>
 #include <regex>
 #include <sys/utsname.h>
-#include <iostream>
+#include <ostream>
 
 #include <seastar/core/internal/uname.hh>
 

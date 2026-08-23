@@ -27,18 +27,18 @@
 #endif
 
 #include <seastar/net/api.hh>
+#include <seastar/core/shared_ptr.hh>
+#include <seastar/core/sharded.hh>
 #include <stdexcept>
 #include <string>
 #include <any>
 #include <boost/intrusive/slist.hpp>
-#include <seastar/util/std-compat.hh>
 #include <seastar/util/variant_utils.hh>
 #include <seastar/core/timer.hh>
 #include <seastar/core/circular_buffer.hh>
 #include <seastar/core/simple-stream.hh>
 #include <seastar/core/lowres_clock.hh>
 #include <boost/functional/hash.hpp>
-#include <seastar/core/sharded.hh>
 #include <seastar/core/semaphore.hh>
 
 namespace seastar {

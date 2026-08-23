@@ -21,15 +21,13 @@
 
 #pragma once
 
-#include <seastar/util/std-compat.hh>
 #include <seastar/core/coroutine.hh>
+#include <seastar/core/stream.hh>
 #include <seastar/coroutine/as_future.hh>
 #include <seastar/coroutine/generator.hh>
 #include <seastar/core/do_with.hh>
-#include <seastar/core/stream.hh>
 #include <seastar/core/sstring.hh>
 #include <seastar/core/shared_ptr.hh>
-#include <seastar/core/align.hh>
 #include <seastar/core/io_priority_class.hh>
 #include <seastar/core/file-types.hh>
 #include <seastar/core/circular_buffer_fixed_capacity.hh>
@@ -37,9 +35,7 @@
 #include <sys/statvfs.h>
 #include <sys/ioctl.h>
 #include <sys/types.h>
-#include <linux/fs.h>
 #include <sys/uio.h>
-#include <unistd.h>
 #include <chrono>
 #include <concepts>
 #include <cstdint>

@@ -18,8 +18,8 @@
 
 #include <utility>
 #include <vector>
-#include <cstdlib>
 #include <cstdint>
+#include <cstdlib>
 #include <memory>
 
 #include <seastar/net/proxy.hh>

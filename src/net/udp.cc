@@ -19,8 +19,9 @@
  * Copyright (C) 2014 Cloudius Systems, Ltd.
  */
 
-#include <seastar/net/ip.hh>
+#include <seastar/net/api.hh>
 #include <seastar/net/stack.hh>
+#include <seastar/net/ip.hh>
 #include <seastar/net/inet_address.hh>
 
 namespace seastar {

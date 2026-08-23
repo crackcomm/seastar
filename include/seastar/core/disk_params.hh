@@ -21,8 +21,9 @@
 
 #pragma once
 
-#include <ranges>
 #include <chrono>
+#include <limits>
+#include <ranges>
 
 #include <seastar/core/io_queue.hh>
 #include <seastar/core/reactor_config.hh>

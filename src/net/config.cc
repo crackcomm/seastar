@@ -21,7 +21,6 @@
 
 
 #include <yaml-cpp/yaml.h>
-#include <algorithm>
 #include <istream>
 #include <optional>
 #include <ranges>
@@ -29,7 +28,7 @@
 #include <string>
 
 #include <seastar/net/config.hh>
-#include <seastar/core/print.hh>
+#include <seastar/core/format.hh>
 
 
 namespace seastar {

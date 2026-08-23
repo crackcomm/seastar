@@ -21,7 +21,8 @@
  */
 
 #include <seastar/net/ip.hh>
-#include <seastar/core/print.hh>
+#include <boost/asio/ip/address_v4.hpp>
+#include <fmt/format.h>
 #include <seastar/core/shared_ptr.hh>
 #include <seastar/net/toeplitz.hh>
 #include <seastar/core/metrics.hh>
