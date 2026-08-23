@@ -49,7 +49,6 @@
 #include <seastar/util/later.hh>
 #include <seastar/core/internal/uname.hh>
 
-#include <boost/range/adaptor/transformed.hpp>
 #include <iostream>
 #include <sys/statfs.h>
 #include <fcntl.h>

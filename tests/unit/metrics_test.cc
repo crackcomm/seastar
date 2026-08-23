@@ -20,6 +20,8 @@
  * Copyright (C) 2019 ScyllaDB.
  */
 
+#include <ranges>
+
 #include <seastar/core/execution_stage.hh>
 #include <seastar/core/metrics_registration.hh>
 #include <seastar/core/metrics.hh>
@@ -37,8 +39,6 @@
 #include <seastar/testing/test_case.hh>
 #include <seastar/testing/thread_test_case.hh>
 #include <seastar/testing/test_runner.hh>
-#include <boost/range/irange.hpp>
-#include <ranges>
 
 SEASTAR_TEST_CASE(test_add_group) {
     using namespace seastar::metrics;
@@ -104,8 +104,8 @@ SEASTAR_THREAD_TEST_CASE(test_renaming_scheuling_groups) {
     }
 
     smp::invoke_on_all([sg] () {
-        return do_with(std::uniform_int_distribution<int>(), boost::irange<int>(0, 1000),
-                [sg] (std::uniform_int_distribution<int>& dist, boost::integer_range<int>& rng) {
+        return do_with(std::uniform_int_distribution<int>(), std::views::iota(0, 1000),
+                [sg] (std::uniform_int_distribution<int>& dist, auto& rng) {
             // flip a fair coin and rename to one of two options and rename to that
             // scheduling group name, do it 1000 in parallel on all shards so there
             // is a chance of collision.
