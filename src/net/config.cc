@@ -20,20 +20,17 @@
  */
 
 
-#include <boost/algorithm/cxx11/any_of.hpp>
-#include <boost/algorithm/cxx11/none_of.hpp>
-#include <boost/next_prior.hpp>
 #include <yaml-cpp/yaml.h>
 #include <algorithm>
 #include <istream>
 #include <optional>
+#include <ranges>
 #include <unordered_map>
 #include <string>
 
 #include <seastar/net/config.hh>
 #include <seastar/core/print.hh>
 
-using namespace boost::algorithm;
 
 namespace seastar {
 namespace net {
@@ -69,7 +66,7 @@ namespace net {
         }
 
         // check each device: when dhcp is off, all of ip, gw, nm must be specified
-        if (any_of(device_configs, [](std::pair<std::string, device_config> p) {
+        if (std::ranges::any_of(device_configs, [](std::pair<std::string, device_config> p) {
                 return !p.second.ip_cfg.dhcp
                     && (p.second.ip_cfg.ip.empty() || p.second.ip_cfg.gateway.empty()
                            || p.second.ip_cfg.netmask.empty());
@@ -79,7 +76,7 @@ namespace net {
         }
 
         // check each device: dhcp cannot be used together with static ip/gw/nm
-        if (any_of(device_configs, [](std::pair<std::string, device_config> p) {
+        if (std::ranges::any_of(device_configs, [](std::pair<std::string, device_config> p) {
                 return p.second.ip_cfg.dhcp
                     && (!p.second.ip_cfg.ip.empty() || !p.second.ip_cfg.gateway.empty()
                            || !p.second.ip_cfg.netmask.empty());
@@ -100,7 +97,7 @@ struct convert<seastar::net::device_config> {
         // test for unsupported key
 
         for (auto&& item : node) {
-            if (none_of(seastar::net::config_keys, [&item](std::string s) {
+            if (std::ranges::none_of(seastar::net::config_keys, [&item](std::string s) {
                     return s == item.first.as<std::string>();
                 })) {
                 throw seastar::net::config_exception(
